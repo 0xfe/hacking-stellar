@@ -4,11 +4,11 @@
 
 # Chapter 2. Payments
 
-Payments are the *raison-d'etre* of Stellar. No t
+Payments are the *raison d'être* of Stellar. Now that we have two accounts: `bob` and `kelly`, lets have them send each other some lumens.
 
-## Working with the Lumen tool
+### Detour: Working with the Lumen tool
 
-Now that we have two accounts: `bob` and `kelly`, lets try to execute some payments between them. To do this, we'll use Lumen's `pay` command. Note that you can always find out more about a command's usage and parameters with the `--help` flag.
+The Lumen command-line-interface (CLI) is broken up into commands, subcommands, and flags. You can always find out more about a command's usage and parameters with the `--help` flag.
 
 ```sh
 $ lumen --help
@@ -45,7 +45,7 @@ Flags:
 Use "lumen [command] --help" for more information about a command.
 ```
 
-Let's see what `lumen pay` lets us do.
+To make payments, we use `lumen pay`. You can get command-specific help for pay with `lumen pay --help`.
 
 ```sh
  $ lumen pay --help
@@ -89,6 +89,8 @@ $ lumen balance kelly
 $ lumen balance bob
 ```
 
+Done! Kelly just sent Bob 5 XLM.
+
 Every transaction can have a short memo associated (upto 28 bytes long.) The memo can used by a payment processor or business to redirect funds. For example, *Mary's Bank* can have a single stellar account for all its customers, and require payers to fill in the memo to designate the recipient. Instead of a text memo, the bank could require a numeric one, for which we use the `--memoid` flag.
 
 ```sh
@@ -106,6 +108,14 @@ $ lumen pay 10 --from MarysBank --to kelly --memotext 'i am h4xor'
 ```
 
 Obviously, we don't have their private seed -- and hopefully we never will.
+
+## Exploring Transactions
+
+So, how do you know it worked? A great way to debug transactions on the Stellar platform is to use the [Stellar Laboratory](https://www.stellar.org/laboratory).
+
+You can use the [endpoint explorer](https://www.stellar.org/laboratory/#explorer?network=test) in the lab to look up accounts, ledger balances, and go through their transaction history.
+
+For example, here's the transaction history of an account on the test network: [GDELI4BPSO7SZGNNIDJ33N2HMJDQKB6PDD6P633U6LKGM26BYDVPRXU3](https://www.stellar.org/laboratory/#explorer?resource=accounts&endpoint=single&values=eyJhY2NvdW50X2lkIjoiR0RFTEk0QlBTTzdTWkdOTklESjMzTjJITUpEUUtCNlBERDZQNjMzVTZMS0dNMjZCWURWUFJYVTMifQ%3D%3D&network=test) (scroll down to see the results.)
 
 ## Managing aliases
 
@@ -175,6 +185,8 @@ $ lumen ns test
 # here.
 $ lumen account new kelly
 ```
+
+Now that we now how to work with aliases and make XLM payments, lets get to the fun stuff: [issuing assets](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md).
 
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
