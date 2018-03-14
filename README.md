@@ -1,11 +1,11 @@
 # Hacking Stellar
 
-A hacker's guide to using the Stellar blockchain platform. This book is a work-in-progress. Reviewers and editors welcome. :-)
+A hacker's guide to using the Stellar blockchain platform. This book is a work-in-progress. Reviewers and editors welcome.
 
 ## Table of Contents
 
 * [Chapter 1. The Basics](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md)
-* [Chapter 2. Making Payments](https://github.com/0xfe/hacking-stellar/blob/master/1-payments.md)
+* [Chapter 2. Making Payments](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
 * Chapter 3. Issuing Assets
 * Chapter 4. Managing Signers
 * Chapter 5. Trading on the DEX

@@ -1,3 +1,8 @@
+*Links:*
+[Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
+[Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
+[Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
+
 # Chapter 1. The Basics
 
 ## What is Stellar?
@@ -84,7 +89,7 @@ $ lumen balance kelly
 # Output: 1000.0000000
 ```
 
-## Stellar Concepts
+## Concepts
 
 There's a lot going on in what we just did. What does it mean to "fund" an account? What did we fund it with? Why did we need to fund it in the first place?
 
@@ -95,3 +100,8 @@ For an account to be valid on the Stellar network, it needs to maintain a minimu
 Each lumen is divisible into 10 million *stroops*. A stroop is the smallest divisible unit of a lumen, and is how balances are mainatained on the ledger.
 
 There is also a fee to transact on the Stellar network called the *base fee*, which today is 100 stroops per operation.
+
+*Links:*
+[Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
+[Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
+[Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
