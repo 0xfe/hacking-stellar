@@ -8,7 +8,7 @@ or even kittens and hugs.
 
 Anyone can create and distribute tokens on the Stellar platform. It's dead simple.
 
-For example, *I* could create five tokens for a new currency called `AXE`, one for each of my guitars,
+For example, I could create five tokens for a new currency called `AXE`, one for each of my guitars,
 with the note: *“the bearer of this token is entitled to one of Mo’s guitars.”* I could then sell 
 the tokens to third parties, who could in turn resell them.
 
@@ -47,8 +47,6 @@ debugging complex Stellar applications.
 
 You can download the latest release of Lumen for your operating system [here](https://github.com/0xfe/lumen/releases).
 
-### Setup
-
 After downloading Lumen, move it to your search path, and configure it to use the test network. We're not
 playing with real money for now.
 
@@ -58,11 +56,11 @@ lumen set config:network test
 ```
 
 ### Create an account
-A user must have an account on the network. To create an account, you first need to generate a key pair -- these
-are the keys to your vault.
+A user must have an account to transact on the network. To create an account, you first need to generate a key pair
+-- these are the keys to your vault.
 
-A key pair consists of two 28-byte strings. One of them is your public “address”, the other your private “seed”.
-Think of one as your username, and the other as your password. Never share your seed with anyone.
+A key pair consists of two 28-byte strings. One of them is your public “*address*”, the other your private “*seed*”.
+Think of one as your username, and the other as your password. Your seed is a secret -- protect it.
 
 Let’s create a new key pair for Bob with Lumen.
 
