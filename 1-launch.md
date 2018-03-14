@@ -12,8 +12,8 @@ For example, *I* could create five tokens for a new currency called `AXE`, one f
 with the note: *“the bearer of this token is entitled to one of Mo’s guitars.”* I could then sell 
 the tokens to third parties, who could in turn resell them.
 
-Because I’m generally regarded as a trustworthy individual (I wear a monocle), the current token owners
-would be comfortable holding these tokens -- they know they could redeem them for real guitars any time.
+Since I’m generally regarded as a trustworthy individual, the current token owners would be comfortable holding
+these tokens -- they know they could redeem them for real guitars any time.
 
 
 ## On Trust
