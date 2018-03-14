@@ -2,18 +2,18 @@
 
 ## What is Stellar?
 
-Stellar is a payment network. It's actually much more than that, but let's start there.
+Stellar is a decentralized payment network. In a nutshell, it lets multiple parties send *unforgeable*
+digital tokens to each other. These tokens could represent any kind of value, like Dollars and Euros,
+or even kittens and hugs.
 
-Stellar lets multiple parties send *unforgeable* digital tokens to each other. These tokens could
-represent any kind of value, like USD or EUR, or even kittens and hugs.
+Anyone can create and distribute tokens on the Stellar platform. It's dead simple.
 
-Anyone can create and distribute tokens on the Stellar platform. Really. It’s dead simple.
-
-For example, I could create five tokens for a new currency called `AXE`, one for each of my guitars,
+For example, *I* could create five tokens for a new currency called `AXE`, one for each of my guitars,
 with the note: *“the bearer of this token is entitled to one of Mo’s guitars.”* I could then sell 
-the tokens to third parties, who could in turn resell them. Because I’m a trustworthy individual,
-the current token owners would be comfortable holding them -- they know they could redeem
-them for real guitars any time.
+the tokens to third parties, who could in turn resell them.
+
+Because I’m a trustworthy individual, the current token owners would be comfortable holding them -- they
+know they could redeem them for real guitars any time.
 
 
 ## On Trust
