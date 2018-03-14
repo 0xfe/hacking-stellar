@@ -1,4 +1,3 @@
-*Links:*
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
@@ -101,7 +100,6 @@ Each lumen is divisible into 10 million *stroops*. A stroop is the smallest divi
 
 There is also a fee to transact on the Stellar network called the *base fee*, which today is 100 stroops per operation.
 
-*Links:*
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)

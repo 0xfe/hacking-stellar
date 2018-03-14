@@ -1,4 +1,3 @@
-*Links:*
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
@@ -74,7 +73,9 @@ Global Flags:
   -v, --verbose          verbose output (false)
 ```
 
-Before we proceed, lets make sure we're using the test network.
+## Your first payment
+
+Before we proceed, lets make sure we're using the test network. (If you want to use the public network, type `public` instead of `test` below.)
 
 ```sh
 $ lumen set config:network test
@@ -106,7 +107,75 @@ $ lumen pay 10 --from MarysBank --to kelly --memotext 'i am h4xor'
 
 Obviously, we don't have their private seed -- and hopefully we never will.
 
-*Links:*
+## Managing aliases
+
+Aliases make it simpler to work with Stellar. You can add and remove aliases with `lumen account set` and `lumen account del`. You can also generate new key pairs and alias them with `lumen account new`.
+
+```sh
+$ lumen account del MarysBank
+$ lumen account address MarysBank
+# ERRO[0000] could not get address for account: MarysBank    cmd=account subcmd=address
+
+$ lumen account new bill
+# GAT5JWOXDCHR423M7VAPMC52NH6KQS4MTATXRJT7GTXDSERKQFFQNLC5 SCKNY3E6WSYFZASR3S34NGQLZLC6WJYJN3OX4AMOPPKQQP66YF2P5NQR
+
+$ lumen account seed bill
+# SCKNY3E6WSYFZASR3S34NGQLZLC6WJYJN3OX4AMOPPKQQP66YF2P5NQR
+```
+
+## Using Namespaces
+
+Sometimes, you may want to start from a clean slate, but still keep your existing aliases. You can use Lumen's *namespaces* feature to do this. Use `lumen ns mynamespace` to create a new namespace (or switch to an existing one.)
+
+```sh
+$ lumen ns project1
+$ lumen account new bill
+# GCVO44W7CY4NA4WMAFW2ZAIFTQBFYNCW2QVRMLGOUFZQ67233D332UCO SDSNH72UMGBYA6ABJHVMRQLJGTTDS7EIAHKGA44RXU6JB6SDLQECW6ZI
+$ lumen account address bill
+# GCVO44W7CY4NA4WMAFW2ZAIFTQBFYNCW2QVRMLGOUFZQ67233D332UCO
+
+# Now lets switch to a new namespace
+$ lumen ns project2
+$ lumen account address bill
+# RRO[0000] could not get address for account: bill    cmd=account subcmd=address
+
+# Switch back
+$ lumen ns project1
+$ lumen account address bill
+# GCVO44W7CY4NA4WMAFW2ZAIFTQBFYNCW2QVRMLGOUFZQ67233D332UCO
+
+# Get the current namespace
+$ lumen ns
+# project1
+```
+
+Namespaces are great to switch between the public and test networks and keep your addresses segregated.
+
+```sh
+# Create a namespace called prod and associate it with the public Stellar network
+$ lumen ns prod
+$ lumen set config:network public
+
+# Create a namespace called test and associate it with the testnet
+$ lumen ns test
+$ lumen set config:network test
+
+# Switch to the prod namespace
+$ lumen ns prod
+
+# We're now transacting on the public network. Any new aliases are tied to
+# this network.
+$ lumen account new kelly
+$ lumen pay --from mo --to kelly --fund
+
+# Switch back to the test namespace
+$ lumen ns test
+
+# We're now transacting on the test network. Lets create a new alias for Kelly
+# here.
+$ lumen account new kelly
+```
+
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
