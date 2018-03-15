@@ -190,7 +190,7 @@ $ lumen account new kelly
 
 ## Concepts
 
-Transactions in Stellar can consist of one or more (operations)[https://www.stellar.org/developers/guides/concepts/operations.html]. Each of these operations modify the ledger in some way, and is charged a **base fee** of 100 stroops. So, a transaction with 9 operations would pay 900 stroops.
+Transactions in Stellar can consist of one or more [operations](https://www.stellar.org/developers/guides/concepts/operations.html). Each of these operations modify the ledger in some way, and is charged a **base fee** of 100 stroops. So, a transaction with 9 operations would pay 900 stroops.
 
 For example, when you make a payment with Lumen using the `pay` command, it creates a [Payment Operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#payment), and bundles it into a new transaction. It then signs it with your private seed, and submits it to the network.
 
@@ -198,7 +198,7 @@ The transaction envelope also contains the total fee to be paid, the address of 
 
 To learn more about transactions read [the topic on the Stellar devlopers site](https://www.stellar.org/developers/guides/concepts/transactions.html).
 
-## Onward...
+## Onward
 
 Now that we now how to work with aliases and make XLM payments, lets get to the fun stuff: [issuing assets](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md).
 

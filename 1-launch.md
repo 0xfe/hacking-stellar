@@ -96,7 +96,7 @@ There's a lot going on in what we just did. What does it mean to "fund" an accou
 
 The native currency of Stellar is the *lumen*, which has the currency code `XLM`. (Yep, this is also what the tool we're using is named after.) Lumens are used to pay for Stellar transactions, and can be bought and sold in many cryptocurrency exchanges. You check the market price of a lumen [here](https://coinmarketcap.com/currencies/stellar/).
 
-For an account to be valid on the Stellar network, it needs to maintain a minimum balance of 0.5 XLM. This is called the **base reserve**. Funding an account is a special operation, distinct from typical payment operations -- this is why we used the `--fund` flag when we funded Kelly's account.
+For an account to be valid on the Stellar network, it needs to maintain a minimum balance of 1 XLM. This is based on Stellar's **base reserve** fee, which is 0.5 XLM. Funding an account is a special operation, distinct from typical payment operations -- this is why we used the `--fund` flag when we funded Kelly's account.
 
 Each lumen is divisible into 10 million *stroops*. A stroop is the smallest divisible unit of a lumen, and is how balances are mainatained on the ledger.
 

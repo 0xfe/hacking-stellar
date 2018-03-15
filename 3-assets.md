@@ -74,11 +74,34 @@ $ lumen pay 10 CAD-BoC --from bob --to BankOfCanada
 $ lumen trust remove bob CAD-BoC
 ```
 
+## Trustline fees
+
+Adding a trustline to an account raises the required minimum balance by the *base reserve* fee, which is 0.5 XLM. So Bob's account with a trustline to the Bank of Canada's CAD asset, needs to maintain at least 1.5 XLM to be able to transact on the network. Any transaction that reduces the balance to below the minimum will be rejected with *INSUFFICIENT_BALANCE*.
+
 ## Distributing assets
 
 Issuing accounts don't hold balances for the assets they issue -- they can techincally issue an infinite supply. So sending an asset back to an issuer is equivalent to destroying the assets.
 
 To create a fixed supply, the typical strategy is to create a new *distributor* account, also managed by the anchor, issue it a fixed number of assets, and then permanently disable the issuer's account. The public can always look up the total supply by checking the issuer's ledger, and also confirm that the supply is fixed by verifying that the issuer's account is permanently disabled.
+
+To permanently disable an account, use `lumen signers masterweight`. This only works if there are no other signers on the account, and we'll discuss this in the next chapter.
+
+```sh
+# Create a distributor account for BoC CAD
+$ lumen account new distributor
+$ lumen friendbot distributor
+
+# Add a trustline for the distributor and distribute a fixed supply of CAD
+$ lumen trust create distributor CAD-BoC
+$ lumen pay 10000000000 CAD-BoC --from BankOfCanada --to distributor
+
+# Now kill BoC's issuer's account
+$ lumen signers masterweight BankOfCanada 0
+```
+
+Bank of Canada can no longer create new CAD assets from that issuer. Their only option now is to create a new issuer account, and get customers to create a new trustline to the new asset for that account.
+
+# Setting asset limits
 
 As an asset holder, one can limit the total amount of an asset that they hold. This is typically a preventitive measure against malice or errors.
 
@@ -110,10 +133,9 @@ $ lumen asset del CAD-BoC
 
 ## Onward
 
-To learn more about assets, read the section in the [Stellar developer guide](https://www.stellar.org/developers/guides/concepts/assets.html). For now, lets move on to Chapter 4, where we discuss multisignature accounts and transactions.
+To learn more about assets, read the section in the [Stellar developer guide](https://www.stellar.org/developers/guides/concepts/assets.html). You can explore assets in the [Stellar lab](https://www.stellar.org/laboratory/#explorer?resource=assets&endpoint=single&network=test).
 
-
-https://www.stellar.org/laboratory/#explorer?resource=assets&endpoint=single&network=test
+For now, lets move on to Chapter 4, where we discuss multisignature accounts and transactions.
 
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
