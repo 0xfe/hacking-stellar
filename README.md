@@ -1,6 +1,11 @@
 # Hacking Stellar
+### An open-source e-book on the Stellar platform
 
-A hacker's guide to using the Stellar blockchain platform. This book is a work-in-progress. Reviewers and editors welcome.
+[Stellar](http://stellar.org) is an open-source decentralized payment network. It allows financial institutions, businesses, and individuals around the world to transact quickly and reliably.
+
+Stellar supports multiple currencies, and even includes a decentralized exchange for quick and transparent cross-currency payments.
+
+This online book introduces you to Stellar with lots of practical examples. By the time you're done with it, you'll be able to build sophisticated Stellar applications that take advantage of some of it's most sophisticated features.
 
 ## Table of Contents
 
@@ -9,15 +14,21 @@ A hacker's guide to using the Stellar blockchain platform. This book is a work-i
 * [Chapter 3. Issuing Assets](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md)
 * [Chapter 4. Managing Signers](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md)
 * Chapter 5. Trading on the DEX
+* Chapter 6. Building an Anchor
 
-## Possible future chapters
-
-Which ones next?
+### Possible future chapters (vote for your favourite)
 
 * Chapter X. Key management and security
 * Chapter X. Hacking Stellar with Go
-* Chapter X. Stellar Internals
+* Chapter X. Hacking Stellar with JavaScript
+* Chapter X. How Stellar Works
 * Chapter X. Appendix: Blockchains
+
+## Contributing
+
+We welcome all kinds of contributors -- reviewers, editors, and hackers to try out the examples and spot bugs.
+
+If you'd like to support this project with lumens, send them to: GDEVC4BOVFMB46UHGJ6NKEBCQVY5WI56GOBWPG3QKS4QV4TKDLPE6AH6.
 
 ## MIT License
 
