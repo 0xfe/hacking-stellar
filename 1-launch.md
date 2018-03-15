@@ -1,6 +1,7 @@
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
-[Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
+[Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -
+[Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md)
 
 # Chapter 1. The Basics
 
@@ -92,14 +93,19 @@ $ lumen balance kelly
 
 There's a lot going on in what we just did. What does it mean to "fund" an account? What did we fund it with? Why did we need to fund it in the first place?
 
-The native currency of Stellar is the *lumen*, and has the currency code `XLM`. (Yes, this is what the tool we're using is named after.) Lumens are used to pay for Stellar transactions, and can be bought and sold in many cryptocurrency exchanges. You check the market price of a lumen [here](https://coinmarketcap.com/currencies/stellar/).
+The native currency of Stellar is the *lumen*, which has the currency code `XLM`. (Yep, this is also what the tool we're using is named after.) Lumens are used to pay for Stellar transactions, and can be bought and sold in many cryptocurrency exchanges. You check the market price of a lumen [here](https://coinmarketcap.com/currencies/stellar/).
 
-For an account to be valid on the Stellar network, it needs to maintain a minimum balance of 0.5 XLM. This is called the *base reserve*. Funding an account is a special operation, distinct from typical payment operations -- this is why we used the `--fund` flag when we funded Kelly's account.
+For an account to be valid on the Stellar network, it needs to maintain a minimum balance of 0.5 XLM. This is called the **base reserve**. Funding an account is a special operation, distinct from typical payment operations -- this is why we used the `--fund` flag when we funded Kelly's account.
 
 Each lumen is divisible into 10 million *stroops*. A stroop is the smallest divisible unit of a lumen, and is how balances are mainatained on the ledger.
 
-There is also a fee to transact on the Stellar network called the *base fee*, which today is 100 stroops per operation.
+There is also a fee to transact on the Stellar network called the *base fee*, which today is 100 stroops per operation. Read more about Stellar fees on the [Stellar developer site](https://www.stellar.org/developers/guides/concepts/fees.html).
+
+## Onward
+
+Move on to [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) to learn about payments, aliases, and more Stellar concepts.
 
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
-[Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
+[Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -
+[Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md)

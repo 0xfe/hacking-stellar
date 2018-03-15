@@ -1,10 +1,11 @@
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
-[Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
+[Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -
+[Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md)
 
 # Chapter 2. Payments
 
-Payments are the *raison d'être* of Stellar. Now that we have two accounts: `bob` and `kelly`, lets have them send each other some lumens.
+Payments are the *raison d'être* of Stellar, and account holders can pay each other using a variety of currencies and assets. In this chapter, we'll discuss and experiment with payments using Stellar's native asset, the lumen.
 
 ### Detour: Working with the Lumen tool
 
@@ -186,8 +187,21 @@ $ lumen ns test
 $ lumen account new kelly
 ```
 
+## Concepts
+
+Transactions in Stellar can consist of one or more (operations)[https://www.stellar.org/developers/guides/concepts/operations.html]. Each of these operations modify the ledger in some way, and is charged a **base fee** of 100 stroops. So, a transaction with 9 operations would pay 900 stroops.
+
+For example, when you make a payment with Lumen using the `pay` command, it creates a [Payment Operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#payment), and bundles it into a new transaction. It then signs it with your private seed, and submits it to the network.
+
+The transaction envelope also contains the total fee to be paid, the address of the account that pays the fee, memo information, a list of signers, etc. For example, Mary's Bank could initiate a payment between their customers, Bob and Kelly, and foot the transaction fee. (This requires multisignature accounts, which we'll learn about in Chapter 4.)
+
+To learn more about transactions read [the topic on the Stellar devlopers site](https://www.stellar.org/developers/guides/concepts/transactions.html).
+
+## Onward...
+
 Now that we now how to work with aliases and make XLM payments, lets get to the fun stuff: [issuing assets](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md).
 
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
-[Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
+[Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -
+[Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md)
