@@ -12,7 +12,7 @@ In this chapter, we'll learn about **Credit Assets**, which are primitives that 
 
 Entities that issue assets are called **Anchors**, and Anchors can be institutions, enterprises, or even individuals. Every Anchor has one or more associated **issuing accounts** from which they distribute assets.
 
-## Creating a new Asset
+## Creating a new asset
 
 Every asset has an **issuer** and a **code**. The issuer is the Stellar address of the account that initially issues the asset on the network, and the code is a short string representing the asset. For example, The *Bank of Canada* could create and issue Canadian Dollars on the Stellar network, with the code `CAD`.
 
@@ -37,6 +37,8 @@ $ lumen asset set CAD-PBCS PBCS --code CAD
 
 We now have two assets with the code `CAD` on the network. How do we know which is which? And how does poor old Bob ensure that the only `CAD` he holds is from the Bank of Canada?
 
+## Trustlines
+
 This is where [trustlines](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) come into the picture. For a credit asset to be held by an account, the account must create a *trustline* to the asset. And since assets are defined by both their code *and* their issuer, there is no way for Bob to mistakenly (or even maliciously) end up holding the wrong `CAD`.
 
 So, before Bob can hold any `CAD`, he must specify create a trustline to the `CAD` he wants to hold.
@@ -60,7 +62,7 @@ What if PBCS tried to issue their CAD to Bob?
 $ lumen pay 10 CAD-PBCS --from PBCS --to bob
 ERRO[0008] payment failed: 400: Transaction Failed (&{tx_failed [op_no_trust]})  cmd=pay
 $ lumen balance bob CAD-PBCS
-0
+# 0
 ```
 
 Guess that didn't work. The only `CAD` that Bob can hold is from the Bank of Canada. This model of explicitly trusting asset issuers is very different from, say Ethereum's ERC20 model, where issuers can distribute tokens to anyone on the network without their permission.
@@ -72,7 +74,7 @@ $ lumen pay 10 CAD-BoC --from bob --to BankOfCanada
 $ lumen trust remove bob CAD-BoC
 ```
 
-## Concepts
+## Distributing assets
 
 Issuing accounts don't hold balances for the assets they issue -- they can techincally issue an infinite supply. So sending an asset back to an issuer is equivalent to destroying the assets.
 
