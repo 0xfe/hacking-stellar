@@ -28,7 +28,7 @@ This online book introduces you to Stellar with lots of practical examples. By t
 
 We welcome all kinds of contributors -- reviewers, editors, and hackers to try out the examples and spot bugs.
 
-If you'd like to support this project with lumens, send them to: GDEVC4BOVFMB46UHGJ6NKEBCQVY5WI56GOBWPG3QKS4QV4TKDLPE6AH6.
+If you'd like to support this project with lumens, send them to: `GDEVC4BOVFMB46UHGJ6NKEBCQVY5WI56GOBWPG3QKS4QV4TKDLPE6AH6`.
 
 ## MIT License
 

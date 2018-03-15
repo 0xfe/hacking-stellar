@@ -69,9 +69,9 @@ $ lumen account seed bob
 
 ```
 
-Great, so now that you have a key pair, let’s turn it into an account. To open an account you need a minimum balance, known as the Base Reserve. Since we’re using the test network and all of this is funny money anyway, you can use Friendbot to give you some funds to open your account.
+Great, so now that you have a key pair, let’s turn it into an account. To open an account you need a minimum balance. Since we’re using the test network and all of this is funny money anyway, you can use [Friendbot](http://friendbot.stellar.org), which is a funding bot for test networks run by the Stellar organization.
 
-Let’s do that, and then check our balance
+You can ask Firendbot to fund a new account with the `lumen friendbot` command.
 
 ```sh
 $ lumen friendbot bob

@@ -96,7 +96,22 @@ If we wanted to require that all three of them approve any threshold or signer o
 $ lumen signer thresholds pizzafund 1 2 3 --signers kelly,mary
 ```
 
-## The master key
+## The Master Key
+
+When you first create an account you generate an address and a seed. The address is the public-facing identifier for the account, and the seed is the **master key**. As we explored in this chapter, you can always add and remove new keys to and from an account, but the master key is forever.
+
+The default weight of the master key is `1`, and the only way to disable a master key, is by setting its weight to `0`. You can do this with `lumen masterweight`.
+
+```sh
+$ lumen masterweight pizzafund 0 --signers kelly,mary,bob
+```
+
+If you set the master weight to 0, and there are no other signers left, the account is permanently disabled. There's no getting it back. This is, in fact, the recommended way to lock an anchor's issuing account for fixed supply assets.
+
+## Onward
+
+To learn more about multisignature support in Stellar, read the [developer guide](https://www.stellar.org/developers/guides/concepts/multi-sig.html).
+
 
 
 
