@@ -74,9 +74,11 @@ $ lumen pay 10 CAD-BoC --from bob --to BankOfCanada
 $ lumen trust remove bob CAD-BoC
 ```
 
-## Trustline fees
+### Trustline fees
 
 Adding a trustline to an account raises the required minimum balance by the *base reserve* fee, which is 0.5 XLM. So Bob's account with a trustline to the Bank of Canada's CAD asset, needs to maintain at least 1.5 XLM to be able to transact on the network. Any transaction that reduces the balance to below the minimum will be rejected with *INSUFFICIENT_BALANCE*.
+
+You can read more about Stellar fees in the [developer guide](https://www.stellar.org/developers/guides/concepts/fees.html).
 
 ## Distributing assets
 
@@ -101,7 +103,7 @@ $ lumen signers masterweight BankOfCanada 0
 
 Bank of Canada can no longer create new CAD assets from that issuer. Their only option now is to create a new issuer account, and get customers to create a new trustline to the new asset for that account.
 
-# Setting asset limits
+### Setting asset limits
 
 As an asset holder, one can limit the total amount of an asset that they hold. This is typically a preventitive measure against malice or errors.
 
@@ -111,6 +113,15 @@ $ lumen trust create bob CAD-BoC 5000
 
 # This will fail
 $ lumen pay 7000 CAD-BoC --from BankOfCanada --to bob
+```
+
+As an anchor, you can also choose to approve your asset holders. By marking the issuing account as `AUTH_REQUIRED`, you can require trustlines to be approved by the issuer before being created.
+
+```sh
+$ lumen flags BankOfCanada auth_required
+
+# BankOfCanada must sign this transaction
+$ lumen trust create bob CAD-BoC 1000 --signers bob,BankOfCanada
 ```
 
 ## Managing asset aliases
@@ -126,8 +137,11 @@ $ lumen asset issuer CAD-BoC
 
 $ lumen asset code CAD-BoC
 # CAD
+```
 
-# Remove the alias for an asset
+Delete an asset alias with `lumen del`.
+
+```sh
 $ lumen asset del CAD-BoC
 ```
 
