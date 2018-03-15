@@ -1,7 +1,8 @@
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -
-[Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md)
+[Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md) -
+[Chapter 4](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md)
 
 # Chapter 2. Payments
 
@@ -118,7 +119,7 @@ You can use the [endpoint explorer](https://www.stellar.org/laboratory/#explorer
 
 For example, here's the transaction history of an account on the test network: [GDELI4BPSO7SZGNNIDJ33N2HMJDQKB6PDD6P633U6LKGM26BYDVPRXU3](https://www.stellar.org/laboratory/#explorer?resource=accounts&endpoint=single&values=eyJhY2NvdW50X2lkIjoiR0RFTEk0QlBTTzdTWkdOTklESjMzTjJITUpEUUtCNlBERDZQNjMzVTZMS0dNMjZCWURWUFJYVTMifQ%3D%3D&network=test) (scroll down to see the results.)
 
-## Managing aliases
+## Managing account aliases
 
 Aliases make it simpler to work with Stellar. You can add and remove aliases with `lumen account set` and `lumen account del`. You can also generate new key pairs and alias them with `lumen account new`.
 
@@ -204,4 +205,5 @@ Now that we now how to work with aliases and make XLM payments, lets get to the 
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -
-[Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md)
+[Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md) -
+[Chapter 4](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md)

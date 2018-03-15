@@ -6,15 +6,15 @@ A hacker's guide to using the Stellar blockchain platform. This book is a work-i
 
 * [Chapter 1. The Basics](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md)
 * [Chapter 2. Making Payments](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)
-* Chapter 3. Issuing Assets
-* Chapter 4. Managing Signers
+* [Chapter 3. Issuing Assets](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md)
+* [Chapter 4. Managing Signers](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md)
 * Chapter 5. Trading on the DEX
 
 ## Possible future chapters
 
 Which ones next?
 
-* Chapter X. Key management and Security
+* Chapter X. Key management and security
 * Chapter X. Hacking Stellar with Go
 * Chapter X. Stellar Internals
 * Chapter X. Appendix: Blockchains
