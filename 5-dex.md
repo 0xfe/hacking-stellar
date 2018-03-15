@@ -85,6 +85,23 @@ $ lumen dex trade bob --buy USD --sell XLM --price 4 --delete 141452
 
 ## Cross-asset Payments
 
+Stellar lets you make transparent cross currency payments over the DEX. For example, if Mary only prefers to transact in Canadian Dollars, and Kelly only likes to transact in Euros, Stellar can facilitate an automatic currency conversion using the cheapest prices on the DEX.
+
+Stellar can sometimes do this even if there isn't a direct CAD <-> EUR offer on the DEX, by finding alternate payment paths over multiple currencies. So, if there are offers for CAD <-> USD, and EUR <-> USD, Stellar can trade the CAD for USD, and then the USD for EUR, all in a single atomic step.
+
+Cross-asset payments are simple to execute with Lumen. Use `--with [asset]` to specify the currency you want to make the payment with, and `--max [price]` to specify the maximum amount you want to spend for the payment.
+
+```sh
+# Kelly deposits 10 USD into Mary's account, and pays for it with her EUR balance. She
+# also instructs Stellar not to spend more than 8 EUR on the transaction.
+$ lumen pay 10 CAD --from kelly --to mary --with EUR --max 8
+```
+
+Lumen uses automatic path finding to facilitate this payment, but you can specify your own asset path if you'd like.
+
+```sh
+$ lumen pay 10 USD --from kelly --to mary --with EUR --max 8 --through XLM
+```
 
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
