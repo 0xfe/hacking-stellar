@@ -5,7 +5,7 @@
 
 Stellar supports multiple currencies, and even includes a decentralized exchange for quick and transparent cross-currency payments.
 
-This online book introduces you to Stellar with lots of practical examples. By the time you're done with it, you'll be able to build sophisticated Stellar applications that take advantage of some of it's most sophisticated features.
+This online book introduces you to Stellar with lots of practical examples using the command-line client, [Lumen](http://github.com/0xfe/lumen), and moves on to building complete applications using the Javascript and Go libraries.
 
 ## Table of Contents
 
