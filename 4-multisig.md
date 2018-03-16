@@ -169,24 +169,24 @@ $ lumen signer thresholds expense 6 6 20
 
 Above, we require a total signing weight of 6 for payments, and 20 for signing changes.
 
-### Disaster Recover key
+### Disaster recovery
 
-An anchor or a business might want to practice sound operations by maintaining an emergency DR key in cold storage (i.e., on an offline medium.) This key would be stored in a safe and have a higher weight than an online key.
+An anchor or a business might want to practice sound operations by maintaining a disaster recovery (DR) key in cold storage (i.e., on an offline medium.) This key would have a higher signing weight than an online key.
 
-Taking the Anchor example form the first use case, you start with generating a key pair on an offline machine.
+Taking the Anchor example from the first use case, you start with generating a key pair on an offline machine.
 
 ```sh
 $ lumen account new dr-key
 # GCXZW4IEBTCQQ6JY4COH3O2SSCBUAMPJ4WM4EU2GWBZ4MNVZJSTISBOE SCRUPYLCKDZ5HP4OBMKXUEAW52F7WFHQYKLZJUVHUPKLAI652E5XOCZY
 ```
 
-Write down the seed on a piece of paper, laminate it, and put it in a safe. Then add the public address as a signer on the issuer's account with a high weight.
+Write down the seed on a piece of paper, laminate it, and put it in a safe. Then add the public address as a signer on the issuer's account with a high weight. (Note that there are much better ways to manage cold keys -- this is just an example.)
 
 ```sh
 $ lumen signer add exec2 --to CAD-issuer 10 --signers exec1,exec2,exec3
 ```
 
-This way, suppose two of the executives die in a car crash (why are they travelling together in the fist place?), the DR key can be recovered and the business can continue to operate.
+This way, suppose two of the executives die in a car crash (why are they traveling together in the fist place?), the DR key can be recovered and the business can continue to operate.
 
 ## Onward
 
