@@ -110,6 +110,84 @@ $ lumen masterweight pizzafund 0 --signers kelly,mary,bob
 
 If you set the master weight to 0, and there are no other signers left, the account is permanently disabled. There's no getting it back. This is, in fact, the recommended way to lock an anchor's issuing account for fixed supply assets.
 
+## Miltisignature use cases
+
+### Anchors and asset issuers
+
+If you're operating as an anchor, you can devise a scheme where at least two executives must approve asset issual, but any employee can authorize a trustline.
+
+```sh
+$ lumen account set CAD-issuer ...
+$ lumen asset set CAD CAD-issuer
+
+# Add the three executives as signers, each with the weight 5
+$ lumen signer add exec1 --to CAD-issuer 5
+$ lumen signer add exec2 --to CAD-issuer 5
+$ lumen signer add exec3 --to CAD-issuer 5
+
+# Add employees with the weight 1 each
+$ lumen signer add employee1 --to CAD-issuer 1
+$ lumen signer add employee2 --to CAD-issuer 1
+$ lumen signer add employeeN --to CAD-issuer 1
+
+# Set the signature thresholds for the issuer
+$ lumen signer thresholds 1 10 15
+```
+
+Above, any employee can authorize trustlines (it's a low threshold operation), but you'll need 10 of them to collude to issue assets. In addition, any two executives can issue assets, but all three of them will have to approve changes to signers or thresholds.
+
+### Joint accounts
+
+Jim and Bob hook up, get married, and want a joint account. Either of them can spend from the account, but the two of them must approve changes to the account.
+
+```sh
+$ lumen signer add bob --to joint 1
+$ lumen signer add jim --to joint 1
+$ lumen signer thresholds joint 1 1 2
+$ lumen masterweight joint 0 --signers bob,jim
+```
+
+Notice that we disabled the master key so it can't be used as a signer. The only way to re-enable it is with both Jim and Bob's approval.
+
+### Expense accounts
+
+You want to create a company expense account where a manager must approve outgoing payments buy employees.
+
+```sh
+$ lumen signer add exec1 --to expense 10
+$ lumen signer add exec2 --to expense 10
+
+$ lumen signer add manager1 --to expense 5
+$ lumen signer add manager2 --to expense 5
+$ lumen signer add managerN --to expense 5
+
+$ lumen signer add employee1 --to expense 1
+$ lumen signer add employee2 --to expense 1
+$ lumen signer add employeeN --to expense 1
+$ lumen signer thresholds expense 6 6 20
+```
+
+Above, we require a total signing weight of 6 for payments, and 20 for signing changes.
+
+### Disaster Recover key
+
+An anchor or a business might want to practice sound operations by maintaining an emergency DR key in cold storage (i.e., on an offline medium.) This key would be stored in a safe and have a higher weight than an online key.
+
+Taking the Anchor example form the first use case, you start with generating a key pair on an offline machine.
+
+```sh
+$ lumen account new dr-key
+# GCXZW4IEBTCQQ6JY4COH3O2SSCBUAMPJ4WM4EU2GWBZ4MNVZJSTISBOE SCRUPYLCKDZ5HP4OBMKXUEAW52F7WFHQYKLZJUVHUPKLAI652E5XOCZY
+```
+
+Write down the seed on a piece of paper, laminate it, and put it in a safe. Then add the public address as a signer on the issuer's account with a high weight.
+
+```sh
+$ lumen signer add exec2 --to CAD-issuer 10 --signers exec1,exec2,exec3
+```
+
+This way, suppose two of the executives die in a car crash (why are they travelling together in the fist place?), the DR key can be recovered and the business can continue to operate.
+
 ## Onward
 
 To learn more about multisignature support in Stellar, read the [developer guide](https://www.stellar.org/developers/guides/concepts/multi-sig.html).
