@@ -91,6 +91,14 @@ $ lumen balance kelly
 # Output: 1000.0000000
 ```
 
+## Security PSA
+
+Note that in the real world, you would not keep your seeds lying around in the clear. For personal use it's always better to use a hardware wallet, or store your seeds in a reputable password manager like [KeePassXC](https://keepassxc.org/).
+
+For business and corporate users, you are strongly encouraged to use multisignature accounts -- this is discussed in detail in [Chapter 4](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md).
+
+Finally, [Lumen](https://github.com/0xfe/lumen) is a tool, not a wallet. Don't rely on it to keep your seeds secure.
+
 ## Concepts
 
 There's a lot going on in what we just did. What does it mean to "fund" an account? What did we fund it with? Why did we need to fund it in the first place?
