@@ -1,7 +1,9 @@
-# Hacking Stellar
-### An open-source e-book on the Stellar platform
+<p align="center">
+  <img src="https://imgur.com/bwyCxXv.png" width="400"/>
+  <br/>
+</p>
 
-[Stellar](http://stellar.org) is an open-source decentralized payment network. It allows financial institutions, businesses, and individuals around the world to transact quickly and reliably.
+**Hacking Stellar** is an open-source e-book on [Stellar](http://stellar.org), the decentralized payment network. Stellar allows financial institutions, businesses, and individuals around the world to transact quickly and reliably.
 
 Stellar supports multiple currencies, and even includes a decentralized exchange for quick and transparent cross-currency payments.
 
