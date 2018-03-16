@@ -23,7 +23,7 @@ $ lumen signer --help
 manage signers on account
 
 Usage:
-  lumen signer [add|remove|thresholds|masterweight] [flags]
+  lumen signer [list|add|remove|thresholds|masterweight] [flags]
   lumen signer [command]
 
 Available Commands:

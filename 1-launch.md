@@ -91,6 +91,46 @@ $ lumen balance kelly
 # Output: 1000.0000000
 ```
 
+You can always look up detailed account information with `lumen info`.
+
+```json
+$ lumen info bob
+{
+  "address": "GADFYJK62RVQOU7BNP53TSUFEQ627H4OBZ6TLBVG4T2U25Y3GYR3MFF4",
+  "balances": [],
+  "signers": [
+    {
+      "public_key": "GDK5X4BUL3YUDEYNDVTJ4MX6NENGKSHPGHVCQNWX3B4MK633MKRWMJJO",
+      "weight": 1,
+      "key": "GDK5X4BUL3YUDEYNDVTJ4MX6NENGKSHPGHVCQNWX3B4MK633MKRWMJJO",
+      "type": "ed25519_public_key"
+    },
+    {
+      "public_key": "GADFYJK62RVQOU7BNP53TSUFEQ627H4OBZ6TLBVG4T2U25Y3GYR3MFF4",
+      "weight": 1,
+      "key": "GADFYJK62RVQOU7BNP53TSUFEQ627H4OBZ6TLBVG4T2U25Y3GYR3MFF4",
+      "type": "ed25519_public_key"
+    }
+  ],
+  "native_balance": {
+    "asset": {
+      "code": "XLM",
+      "issuer": "",
+      "type": "\"native\""
+    },
+    "amount": "9999.9999800",
+    "limit": ""
+  },
+  "home_domain": "",
+  "thresholds": {
+    "high": 2,
+    "medium": 2,
+    "low": 2
+  },
+  "seq": "34126534528729090"
+}
+```
+
 ## Security PSA
 
 Note that in the real world, you would not keep your seeds lying around in the clear. For personal use it's always better to use a hardware wallet, or store your seeds in a reputable password manager like [KeePassXC](https://keepassxc.org/).
