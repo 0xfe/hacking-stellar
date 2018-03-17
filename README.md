@@ -5,8 +5,6 @@
 
 **Hacking Stellar** is an open-source e-book on [Stellar](http://stellar.org), the decentralized payment network, which allows financial institutions, businesses, and individuals around the world to transact quickly and reliably.
 
-Stellar supports multiple currencies, and even includes a distributed exchange for transparent atomic cross-currency payments.
-
 This online book introduces you to Stellar with lots of practical examples using the command-line client, [Lumen](http://github.com/0xfe/lumen), and moves on to building complete applications using the Javascript and Go libraries.
 
 ## Table of Contents
