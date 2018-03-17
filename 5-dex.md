@@ -103,6 +103,106 @@ Lumen uses automatic path finding to facilitate this payment, but you can specif
 $ lumen pay 10 USD --from kelly --to mary --with EUR --max 8 --through XLM
 ```
 
+## Trying it out
+
+Let's try an end-to-end example where we create a bunch of assets, offer them on the DEX, and then make a path payment through them.
+
+First, lets create some accounts.
+
+```sh
+# Switch to the test network
+$ lumen set config:network test
+
+# Create and fund our asset issuer.
+$ lumen account new issuer
+$ lumen friendbot issuer
+
+# Create and fund Bob and Kelly, our end-users.
+$ lumen account new kelly
+$ lumen friendbot issuer
+$ lumen account new bob
+$ lumen friendbot issuer
+
+# Create and fund Mary and Mike, active traders.
+$ lumen account new mary
+$ lumen friendbot mary
+$ lumen account new mike
+$ lumen friendbot mike
+```
+
+Now, let's create some assets for currencies `USD`, `INR`, and `EUR` all issued by `issuer`. We'll also create trustlines for Bob, Kelly, Mary, and Mike, and seed their accounts with some funds.
+
+```sh
+$ lumen asset set USD issuer
+$ lumen asset set INR issuer
+$ lumen asset set EUR issuer
+
+# Kelly's preferred currency is INR, she doesn't hold anything else.
+$ lumen trust create kelly --to INR
+$ lumen pay 1000 INR --from issuer --to kelly
+
+# Bob's preferred currency is USD.
+$ lumen trust create bob --to USD
+$ lumen pay 1000 USD --from issuer --to bob
+
+# Mary's likes to trade USD and EUR.
+$ lumen trust create mary --to USD
+$ lumen pay 1000 USD --from issuer --to mary
+$ lumen trust create mary --to EUR
+$ lumen pay 1000 EUR --from issuer --to mary
+
+# Mike likes to trade EUR and INR.
+$ lumen trust create mike --to EUR
+$ lumen pay 1000 EUR --from issuer --to mike
+$ lumen trust create mike --to INR
+$ lumen pay 1000 INR --from issuer --to mike
+```
+
+Since Mary and Mike are active traders, have them put some offers up on the DEX. Let's keep the prices at `1` to keep things simple.
+
+```sh
+$ lumen dex trade mary --buy USD --sell EUR --amount 50 --price 1
+$ lumen dex trade mike --buy EUR --sell INR --amount 50 --price 1
+```
+
+So Mary is trading USD for EUR, and Mike's trading EUR for INR. These offers hang out on the network until someone makes an inverse offer.
+
+Some time later, Kelly fixes Bob's Internet, and charges him `10 INR`, which is her preferred currency. Bob only has `USD`, which is his preferred currency.
+
+No big deal. Thanks to the DEX, Bob can pay Kelly `10 INR` with his `USD`, by making a path payment.
+
+```sh
+# Bob knows that the USD <-> INR exchange rate is 1, so he sets the max spend to 10, which implies that
+# he spends no more than 10 USD on this transaction.
+$ lumen pay 10 INR --from bob --to kelly --with USD --max 10
+```
+
+That's it! Let's check their balances to verify that the transaction went through.
+
+```sh
+$ lumen balance bob USD
+# 9990.0000000
+
+$ lumen balance kelly INR
+# 1010.0000000
+```
+
+To see what happened, let's take a look at the orderbook.
+
+```sh
+$ lumen dex list mary
+# (141452) selling 40.0000000 EUR for USD at 1.0000000 USD/EUR
+
+$ lumen dex list mike
+# (143297) selling 40.0000000 INR for EUR at 5.0000000 USD/XLM
+```
+
+The path payment filled 10 units of both Mary's and Mike's offers. Effectively, Bob sold his `USD` to Mary, who in turn sold her `EUR` to Mike, who ended up paying Kelly the `10 INR`. Furthermore, Stellar ensured that of this happend in one atomic step, i.e., there's no way that this payment flow would only be partially executed, leaving both Bob and Kelly hanging.
+
+# Onward
+
+As you can see, Stellar's DEX is a fantastic way to facilitate cross-asset payments, but also path payments help increase the amount of liquidity in the DEX. In the next chapter, we'll work on building an Anchor.
+
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -

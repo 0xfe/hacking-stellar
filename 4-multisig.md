@@ -6,7 +6,7 @@
 [Chapter 5](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md)
 
 
-# Chapter 4. Managing Signers (in-progress)
+# Chapter 4. Managing Signers
 
 Transactions must be cryptographically signed before it can be submitted to Stellar for processing. And typically, it's the account that initiates the transaction (e.g., a payer, or a trustor) that signs it. Transactions that are not signed, or signed by the wrong parties are immediately rejected by the network.
 
