@@ -15,11 +15,11 @@ This online book introduces you to Stellar with lots of practical examples using
 * [Chapter 2. Making Payments](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) (draft)
 * [Chapter 3. Issuing Assets](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md) (draft)
 * [Chapter 4. Managing Signers](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md) (draft)
-* [Chapter 5. Trading on the DEX](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md) (in progress)
-* Chapter 6. Building an Anchor
+* [Chapter 5. Trading on the DEX](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md) (draft)
 
 ### Possible future chapters (vote for your favourite)
 
+* Chapter X. Building an Anchor
 * Chapter X. Key management and security
 * Chapter X. Hacking Stellar with Go
 * Chapter X. Hacking Stellar with JavaScript

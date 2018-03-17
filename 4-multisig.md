@@ -176,14 +176,14 @@ An anchor or a business might want to practice sound operations by maintaining a
 Taking the Anchor example from the first use case, you start with generating a key pair on an offline machine.
 
 ```sh
-$ lumen account new dr-key
+$ lumen account new
 # GCXZW4IEBTCQQ6JY4COH3O2SSCBUAMPJ4WM4EU2GWBZ4MNVZJSTISBOE SCRUPYLCKDZ5HP4OBMKXUEAW52F7WFHQYKLZJUVHUPKLAI652E5XOCZY
 ```
 
 Write down the seed on a piece of paper, laminate it, and put it in a safe. Then add the public address as a signer on the issuer's account with a high weight. (Note that there are much better ways to manage cold keys -- this is just an example.)
 
 ```sh
-$ lumen signer add exec2 --to CAD-issuer 10 --signers exec1,exec2,exec3
+$ lumen signer add GCXZW4IEBTCQQ6JY4COH3O2SSCBUAMPJ4WM4EU2GWBZ4MNVZJSTISBOE --to CAD-issuer 10 --signers exec1,exec2,exec3
 ```
 
 This way, suppose two of the executives die in a car crash (why are they traveling together in the fist place?), the DR key can be recovered and the business can continue to operate.
