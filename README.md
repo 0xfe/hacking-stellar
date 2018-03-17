@@ -16,6 +16,7 @@ This online book introduces you to Stellar with lots of practical examples using
 * [Chapter 3. Issuing Assets](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md) (draft)
 * [Chapter 4. Managing Signers](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md) (draft)
 * [Chapter 5. Trading on the DEX](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md) (draft)
+* Chapter 6. Debugging Stellar (in progress)
 
 ### Possible future chapters (vote for your favourite)
 
