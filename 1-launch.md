@@ -91,7 +91,7 @@ $ lumen balance kelly
 # Output: 1000.0000000
 ```
 
-You can always look up detailed account information with `lumen info`.
+You can always look up detailed account information with `lumen info`. Don't worry about what all this means right now, we'll figure it out over the next few chapters.
 
 ```json
 $ lumen info bob

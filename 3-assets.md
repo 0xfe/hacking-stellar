@@ -24,45 +24,50 @@ $ lumen set config:network test
 $ lumen account new BankOfCanada
 $ lumen friendbot BankOfCanada
 
-# Create an asset called CAD issued by BankOfCanada (with the alias CAD-BoC)
-$ lumen asset set CAD-BoC BankOfCanada --code CAD
+# Create an asset called CAD issued by BankOfCanada. Lumen uses the alias as the
+# as the asset code unless you explicitly specify it with the --code flag.
+$ lumen asset set CAD BankOfCanada
 ```
-
-Note that we've only just defined an asset with the code `CAD` -- we haven't issued any yet. Stellar has no knowledge of this asset. We'll issue some `CAD` soon, but first let's suppose that the *People's Bank of Canadian Separatists* want to issue `CAD` too.
-
-```sh
-$ lumen account new PBCS
-$ lumen friendbot PBCS
-$ lumen asset set CAD-PBCS PBCS --code CAD
-```
-
-We now have two assets with the code `CAD` on the network. How do we know which is which? And how does poor old Bob ensure that the only `CAD` he holds is from the Bank of Canada?
 
 ## Trustlines
 
-This is where [trustlines](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) come into the picture. For a credit asset to be held by an account, the account must create a *trustline* to the asset. And since assets are defined by both their code *and* their issuer, there is no way for Bob to mistakenly (or even maliciously) end up holding the wrong `CAD`.
+Stellar doesn't let an anchor simply issue a new asset to anyone, nor does it allow accounts to hold arbitrary assets. Accounts must explicitly create **trustlines** to assets they want to hold. [Trustlines](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) protect users from trading the wrong type of asset, by explicitly authorizing assets from only trusted anchors and issuers.
 
-So, before Bob can hold any `CAD`, he must specify create a trustline to the `CAD` he wants to hold.
+So, before Bob can hold any `CAD`, he must specify create a trustline to the `CAD` he wants to hold with the `lumen trust` command. Since assets are defined by both their code *and* their issuer, there's no way for Bob to end up with the wrong `CAD` in his account.
 
 ```sh
 # Create a trustline from Bob to the CAD issued by the Bank of Canada
-$ lumen trust create bob CAD-BoC
+$ lumen trust create bob CAD
 ```
 
-Now, the Bank of Canada can issue some CAD assets and send it to Bob.
+## Issuing the asset
+
+Now, the Bank of Canada can issue some CAD assets and send it to Bob. To issue an asset, simply make a payment from the issuer to the recipient.
 
 ```sh
-$ lumen pay 10 CAD-BoC --from BankOfCanada --to bob
-$ lumen balance bob CAD-BoC
+$ lumen pay 10 CAD --from BankOfCanada --to bob
+$ lumen balance bob CAD
 # 10.0000000
 ```
 
-What if PBCS tried to issue their CAD to Bob?
+Great! Bob now has some spending money.
+
+So lets suppose that there's an Anchor run by a rogue entity called the *People's Bank of Canadian Separatists*, and they're issuing `CAD` too.
 
 ```sh
-$ lumen pay 10 CAD-PBCS --from PBCS --to bob
+$ lumen account new rogue-bank
+$ lumen friendbot rogue-bank
+$ lumen asset set CAD-rogue rogue-bank --code CAD
+```
+
+We now have two assets with the code `CAD` on the network (with the alises `CAD` and `CAD-rogue`. How does poor old Bob ensure that the only `CAD` he holds is from the Bank of Canada? Simple -- he does nothing.
+
+Let's see what happens when the People's Bank of Canadian Separatists try to issue their CAD to Bob.
+
+```sh
+$ lumen pay 10 CAD-rogue --from rogue-bank --to bob
 ERRO[0008] payment failed: 400: Transaction Failed (&{tx_failed [op_no_trust]})  cmd=pay
-$ lumen balance bob CAD-PBCS
+$ lumen balance bob CAD-rogue
 # 0
 ```
 
@@ -71,13 +76,13 @@ Guess that didn't work. The only `CAD` that Bob can hold is from the Bank of Can
 If Bob decides that he never wants to hold `CAD` again, he can return the assets back to the issuer and revoke his trustline.
 
 ```sh
-$ lumen pay 10 CAD-BoC --from bob --to BankOfCanada
-$ lumen trust remove bob CAD-BoC
+$ lumen pay 10 CAD --from bob --to BankOfCanada
+$ lumen trust remove bob CAD
 ```
 
 ### Trustline fees
 
-Adding a trustline to an account raises the required minimum balance by the *base reserve* fee, which is 0.5 XLM. So Bob's account with a trustline to the Bank of Canada's CAD asset, needs to maintain at least 1.5 XLM to be able to transact on the network. Any transaction that reduces the balance to below the minimum will be rejected with *INSUFFICIENT_BALANCE*.
+Adding a trustline to an account raises the required minimum balance by the *base reserve* fee, which is 0.5 XLM. So Bob's account with a trustline to the Bank of Canada's CAD asset, needs to maintain at least 1.5 XLM to be able to transact on the network. Any transaction that reduces the balance to below the minimum will be rejected with `INSUFFICIENT_BALANCE`
 
 You can read more about Stellar fees in the [developer guide](https://www.stellar.org/developers/guides/concepts/fees.html).
 
@@ -95,8 +100,8 @@ $ lumen account new distributor
 $ lumen friendbot distributor
 
 # Add a trustline for the distributor and distribute a fixed supply of CAD
-$ lumen trust create distributor CAD-BoC
-$ lumen pay 10000000000 CAD-BoC --from BankOfCanada --to distributor
+$ lumen trust create distributor CAD
+$ lumen pay 10000000000 CAD --from BankOfCanada --to distributor
 
 # Now kill BoC's issuer's account
 $ lumen signers masterweight BankOfCanada 0
@@ -106,17 +111,17 @@ Bank of Canada can no longer create new CAD assets from that issuer. Their only 
 
 ### Setting asset limits
 
-As an asset holder, one can limit the total amount of an asset that they hold. This is typically a preventitive measure against malice or errors.
+As an asset holder, one can limit the total amount of an asset that they hold during trustline creation. This is typically a preventitive measure against malice or errors.
 
 ```sh
 # Don't hold more than 5000 CAD
-$ lumen trust create bob CAD-BoC 5000
+$ lumen trust create bob CAD 5000
 
 # This will fail
 $ lumen pay 7000 CAD-BoC --from BankOfCanada --to bob
 ```
 
-As an anchor, you can also choose to approve your asset holders. By marking the issuing account as `AUTH_REQUIRED`, you can require trustlines to be approved by the issuer before being created.
+As an anchor, you can also choose to pre-approve your asset holders. By marking the issuing account as `AUTH_REQUIRED`, you can require trustlines to be approved by the issuer before being created.
 
 ```sh
 $ lumen flags BankOfCanada auth_required
@@ -133,10 +138,13 @@ To look up assets by their alias, you can use the `lumen asset` command.
 
 ```sh
 # Who issues CAD-BoC?
-$ lumen asset issuer CAD-BoC
+$ lumen asset issuer CAD
 # GC6C225I4VIKCLUWJNAFRTTUN5UAMK7JRTCRUN3KSVXULVZ6OEH2WQRH
 
-$ lumen asset code CAD-BoC
+$ lumen asset code CAD
+# CAD
+
+$ lumen asset code CAD-rogue
 # CAD
 ```
 
