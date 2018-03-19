@@ -154,6 +154,18 @@ Delete an asset alias with `lumen del`.
 $ lumen asset del CAD-BoC
 ```
 
+If you don't want to create an asset, you can use colon-syntax to reference one without making an alias. The format `CODE:ISSUER` or `CODE:ISSUER:TYPE` can be used in place of any of the other commands in this chapter.
+
+```sh
+$ lumen trust create bob CAD:BankOfCanada
+
+# Incase you want to specify the asset type
+$ lumen pay 1 USD:BankOfCanada:credit_alphanum4 --from mary --to bob
+
+# No aliases at all
+$ lumen balance bob CAD:GC6C225I4VIKCLUWJNAFRTTUN5UAMK7JRTCRUN3KSVXULVZ6OEH2WQRH
+```
+
 ## Onward
 
 To learn more about assets, read the section in the [Stellar developer guide](https://www.stellar.org/developers/guides/concepts/assets.html). You can explore assets in the [Stellar lab](https://www.stellar.org/laboratory/#explorer?resource=assets&endpoint=single&network=test).
