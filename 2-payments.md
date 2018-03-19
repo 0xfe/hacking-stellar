@@ -121,6 +121,28 @@ You can use the [endpoint explorer](https://www.stellar.org/laboratory/#explorer
 
 For example, here's the transaction history of an account on the test network: [GDELI4BPSO7SZGNNIDJ33N2HMJDQKB6PDD6P633U6LKGM26BYDVPRXU3](https://www.stellar.org/laboratory/#explorer?resource=accounts&endpoint=single&values=eyJhY2NvdW50X2lkIjoiR0RFTEk0QlBTTzdTWkdOTklESjMzTjJITUpEUUtCNlBERDZQNjMzVTZMS0dNMjZCWURWUFJYVTMifQ%3D%3D&network=test) (scroll down to see the results.)
 
+### Generating Transactions
+
+You can use Lumen to generate transactions for you without submitting them. This is useful if you need more accounts to sign it before it can be submitted, or if you simply want to submit it later. When you use the `--nosubmit` flag, Lumen will output a base64 string encoding the requested transaction.
+
+```sh
+$ lumen pay 10 --from bob --to mary --nosubmit
+# AAAAALiDDp5aQxVoaDvKOlVcx+DGXSKYKq9tRjERhtq4jMTaAAAAZAB5uK0AAAAHAAAAAAAAAAAAAAABAAAAAAAAAAEAAAAAlveOUG3nLTgXeReTjtP0w79J7s1x+GcjFe9aM4LNnXgAAAAAAAAAAAX14QAAAAAAAAAAAbiMxNoAAABAO7sZLRrJyUC0xm1JFVxdiaRL9ZPJJ6hze22ZQ6npqziBmDK9JMTFf+bxm4fIqoNcqwth2pBwXFcOgc134QmnCA==
+```
+
+To submit later, use `lumen tx submit`.
+
+```sh
+$ lumen tx submit AAAAA...(full string)
+```
+
+You can always read the contents of the transaction with `lumen tx decode`.
+
+```sh
+$ lumen tx decode AAAAA... --pretty
+# Output: pretty JSON string with transaction contents
+```
+
 ## Managing account aliases
 
 Aliases make it simpler to work with Stellar. You can add and remove aliases with `lumen account set` and `lumen account del`. You can also generate new key pairs and alias them with `lumen account new`.

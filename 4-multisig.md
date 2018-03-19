@@ -110,6 +110,23 @@ $ lumen masterweight pizzafund 0 --signers kelly,mary,bob
 
 If you set the master weight to 0, and there are no other signers left, the account is permanently disabled. There's no getting it back. This is, in fact, the recommended way to lock an anchor's issuing account for fixed supply assets.
 
+## Real-world usage
+
+In the real world, one does not typically have all the signing keys for a multisig transaction. So, the first signer usually generates a signed transaction, and passes it on to the next person to sign. After all parties have signed the transaction, anyone can submit it to the network. Let's try that out.
+
+Kelly first creates the transaction and signs it on her machine. She uses the `--nosubmit` flag to specify that the transaction should not be submitted to the Stellar network. She also pipes out the base64-encoded transaction (output by Lumen) to `pizza.txt`
+
+```sh
+$ lumen pay 10 USD --from pizzafund --to pizzahut --nosubmit >pizza.txt
+```
+
+Kelly then sends `pizza.txt` to Mary, who adds her signature to the transaction, and then submits it to the network. She uses `lumen tx sign` and `lumen tx submit` for this.
+
+```sh
+$ lumen tx sign $(cat foo.txt) --signers mary >foo.signed.txt
+$ lumen tx submit $(cat foo.signed.txt)
+```
+
 ## Miltisignature use cases
 
 ### Anchors and asset issuers

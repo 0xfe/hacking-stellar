@@ -246,7 +246,7 @@ Then, on a different terminal, type:
 $ lumen friendbot mary
 ```
 
-Switch back to the first terminal -- if friendbot worked, you should see this:
+Switch back to the first terminal -- if friendbot succeeded in funding Mary's account, you should see this:
 
 ```json
 {
@@ -273,6 +273,40 @@ Switch back to the first terminal -- if friendbot worked, you should see this:
 }
 ```
 
+There was a new `create_account` operation funding Mary's account with `10000` lumens. Let's pay her again.
+
+```sh
+$ lumen pay 10 --from bob --to mary --memotext "hi mary"
+```
+
+You should now see a `payment` operation show up on the watching terminal:
+
+```json
+{
+  "id": "34287978054422529",
+  "type": "payment",
+  "paging_token": "34287978054422529",
+  "_links": {
+    "transaction": {
+      "href": "https://horizon-testnet.stellar.org/transactions/d546ef6942625e628e5c80f7a60ad887674bcfb9a4109c845a922afa947b8504"
+    }
+  },
+  "account": "",
+  "starting_balance": "",
+  "from": "GBGMPKS4JY6SKHSZQ5KHM4GRSJNRXINH57HMJ4T3UXDE2WIU6PYFPRPC",
+  "to": "GCLPPDSQNXTS2OAXPELZHDWT6TB36SPOZVY7QZZDCXXVUM4CZWOXR4GA",
+  "asset_type": "native",
+  "asset_code": "",
+  "asset_issuer": "",
+  "amount": "10.0000000",
+  "Memo": {
+    "memo_type": "text",
+    "memo": "hi mary"
+  }
+}
+```
+
+Notice the memo text on the transaction?
 
 * streaming
 * offers
