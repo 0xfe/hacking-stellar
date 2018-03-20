@@ -64,7 +64,7 @@ $ lumen account set mary GAFAP7HEY3Q7YQNNXKRIMVSTDGOP7PHMRPN5UZ4C655HARYV7KHSXEA
 # Add bob, mary, and kelly as signers, with the weight of 1 each.
 $ lumen signer add bob 1 --to pizzafund --memotext "pizza for bob"
 $ lumen signer add mary 1 --to pizzafund --memotext "pizza for mary"
-$ lumen signer add kelly 1 --to pizzafund --memotext "pizza for mary"
+$ lumen signer add kelly 1 --to pizzafund --memotext "pizza for kelly"
 ```
 
 That's it! Now Bob, Kelly, and Mary can spend from the pizza fund and never be hungry again! Since Kelly added herself as a signer, she can throw away the pizza fund's seed.
@@ -120,11 +120,18 @@ Kelly first creates the transaction and signs it on her machine. She uses the `-
 $ lumen pay 10 USD --from pizzafund --to pizzahut --nosubmit >pizza.txt
 ```
 
-Kelly then sends `pizza.txt` to Mary, who adds her signature to the transaction, and then submits it to the network. She uses `lumen tx sign` and `lumen tx submit` for this.
+Kelly then sends `pizza.txt` to Mary, who adds her signature to the transaction, and then submits it to the network. She uses `lumen tx sign` and `lumen tx submit` for this. Before she signs it, she decodes the transaction to verify the contents.
 
 ```sh
+$ lumen tx decode $(cat foo.txt) --pretty
 $ lumen tx sign $(cat foo.txt) --signers mary >foo.signed.txt
 $ lumen tx submit $(cat foo.signed.txt)
+```
+
+Kelly could also have generated the initial transaction without signing it at all, asking Bob and Mary to do the honours. She would use the `--nosign` flag for this.
+
+```sh
+$ lumen pay 10 USD --from pizzafund --to pizzahut --nosign --nosubmit >pizza.unsigned.txt
 ```
 
 ## Miltisignature use cases
