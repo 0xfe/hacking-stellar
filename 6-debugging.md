@@ -14,9 +14,23 @@ In this chapter, we'll explore the many ways to debug and troubleshoot your Stel
 
 The Stellar organization manages two publically-accessible networks, called *live* and *test*. (These are sometimes also referred to as *public* and *testnet*.) Both consist of a peer-to-peer network of nodes running the [Stellar Core](https://www.stellar.org/developers/stellar-core/learn/admin.html) software, which validate and process transactions, and commit them to the global ledgers of their specific networks.
 
-The live network is where real value is transacted. Lumens on the live network cost real money, and can be bought at many cryptocurrency exchanges. The test network on the other hand is
+The live network is where real value is transacted. Lumens on the live network cost real money, and can be bought at many cryptocurrency exchanges. The test network on the other uses fake luments that developers can request at any time.
+
+You can see see the status of the networks on the [Stellar Network Dashboard](https://dashboard.stellar.org/).
 
 ### Horizon
+
+When you transact on Stellar using the SDKs or Lumen, you don't directly interact with the core network. You're actually interacting with [Horizon](https://www.stellar.org/developers/reference/), which is an API gateway into the core network.
+
+The stellar organization runs a set Horizon servers (which tools and SDKs default to using). However, if you're deploying applications into production, it's always better to run your own servers. This not only lets you manage load and scale, but also protects you from security compromises of infrastructure you don't fully control.
+
+With Lumen, you can use the `set config:network` command or the `--network` flag to specify a custom Horizon server.
+
+```sh
+$ lumen balance bob --network 'custom;http://my.server:8000;networkpassphrase`
+```
+
+The passphrase above is for the network you're connecting to (`live` or `test`), not for the Horizon server. You can use any type of firewalling or HTTP proxying to restrict access to your server.
 
 ## Ledgers, transactions, and operations
 
