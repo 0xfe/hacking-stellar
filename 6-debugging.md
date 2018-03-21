@@ -386,7 +386,7 @@ Notice the memo text? It's actually not part of the operation, but pulled in her
 
 If you switch to the transactions terminal, you should see multiple operations with just the details of the transaction envelope.
 
-### Verbose Logging
+#### Lumen Detour: Verbose Logging
 
 Lumen can output detailed logs for an operation with the `-v` flag. This is handy when your Stellar operations aren't behaving as expected.
 
