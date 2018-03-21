@@ -32,6 +32,34 @@ $ lumen balance bob --network 'custom;http://my.server:8000;networkpassphrase`
 
 The passphrase above is for the network you're connecting to (`live` or `test`), not for the Horizon server. You can use any type of firewalling or HTTP proxying to restrict access to your server.
 
+### XDR Encoding
+
+Messages on the Stellar core network are encoded in a format called XDR (*External Data Representation*), specified in [RFC 4506](https://tools.ietf.org/html/rfc4506.html). XDR is a binary format designed to be both bandwidth friendly and compatible across various machine architectures.
+
+For the most part, Horizon does all the heavy lifting for us, translating messages between XDR and JSON, however the SDKs and libraries do need to work with XDR to sign and submit transactions. XDR structures embedded in JSON are always *base64*-encoded -- Base64 is a text-friendly encoding of binary data, suitable for embedding into strings.
+
+For example, let's generate an unsigned transaction without submitting it to the network:
+
+```sh
+$ lumen pay 10 --from issuer --to distributor --nosign --nosubmit >payment.txt
+$ cat payment.txt
+AAAAADS+VZ+XjxzKscWEqihJhF+xc1iFEHd1g5j+/vIlSphIAAAAZAB6eYwAAAAFAAAAAAAAAAAAAAABAAAAAAAAAAEAAAAA9PBUt4iVNaTh8rzkjyn6nhCtCCZ76N58aTjRCVW/h1cAAAAAAAAAAAX14QAAAAAAAAAAAA==
+```
+
+Lumen generated the requested payment transaction and encoded the XDR into base64. To convert it back to human-readable JSON, you can use `lumen tx decode`.
+
+```sh
+$ lumen tx decode $(cat payment.txt)
+{"Tx":{"SourceAccount":{"Type":0,"Ed25519":[52,190,85,159,151,143,28,202,177,197,132,170,40,73,132,95,177,115,88,133,16,119,117,131,152,254,254,242,37,74,152,72]},"Fee":100,"SeqNum":34473589361082373,"TimeBounds":null,"Memo":{"Type":0,"Text":null,"Id":null,"Hash":null,"RetHash":null},"Operations":[{"SourceAccount":null,"Body":{"Type":1,"CreateAccountOp":null,"PaymentOp":{"Destination":{"Type":0,"Ed25519":[244,240,84,183,136,149,53,164,225,242,188,228,143,41,250,158,16,173,8,38,123,232,222,124,105,56,209,9,85,191,135,87]},"Asset":{"Type":0,"AlphaNum4":null,"AlphaNum12":null},"Amount":100000000},"PathPaymentOp":null,"ManageOfferOp":null,"CreatePassiveOfferOp":null,"SetOptionsOp":null,"ChangeTrustOp":null,"AllowTrustOp":null,"Destination":null,"ManageDataOp":null}}],"Ext":{"V":0}},"Signatures":null}
+```
+
+You can sign and submit this transcation to the network with `lumen tx sign` and `lumen tx submit`.
+
+```sh
+$ lumen tx sign $(cat payment.txt) --signers issuer >payment.signed.txt
+$ lumen tx submit $(cat payment.signed.txt)
+```
+
 #### Using namespaces to switch networks
 
 It might become tedious to keep setting the network parameters when you're working across different networks. Lumen lets you segregate your configuration and aliases across namespaces.
@@ -267,7 +295,7 @@ $ lumen info GDMIF55WK2LUUQ77TRE4RDDC5325I2GY555HRQWI5IE7MGG7662OSBWS --network 
 }
 ```
 
-You can tell that the account holder has about 2.8 lumens and over 13000 `RMT`. The account has a single signer, which is simply the master key (see [Chapter 4](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md.)
+You can tell that the account holder has about 2.8 lumens and over 13000 `RMT`. The account has a single signer, which is simply the master key (see [Chapter 4](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md) for more about signing keys.)
 
 ## Watching an account
 
