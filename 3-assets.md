@@ -34,7 +34,7 @@ $ lumen asset set CAD BankOfCanada
 
 Stellar doesn't let an anchor simply issue a new asset to anyone, nor does it allow accounts to hold arbitrary assets. Accounts must explicitly create **trustlines** to assets they want to hold. [Trustlines](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) protect users from trading the wrong type of asset, by explicitly authorizing assets from only trusted anchors and issuers.
 
-So, before Bob can hold any `CAD`, he must specify create a trustline to the `CAD` he wants to hold with the `lumen trust` command. Since assets are defined by both their code *and* their issuer, there's no way for Bob to end up with the wrong `CAD` in his account.
+So, before Bob can hold any `CAD`, he must specifically create a trustline to the `CAD` he wants to hold with the `lumen trust` command. Since assets are defined by both their code *and* their issuer, there's no way for Bob to end up with the wrong `CAD` in his account.
 
 ```sh
 # Create a trustline from Bob to the CAD issued by the Bank of Canada
