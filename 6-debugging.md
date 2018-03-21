@@ -32,7 +32,7 @@ $ lumen balance bob --network 'custom;http://my.server:8000;networkpassphrase`
 
 The passphrase above is for the network you're connecting to (`live` or `test`), not for the Horizon server. You can use any type of firewalling or HTTP proxying to restrict access to your server.
 
-### XDR Encoding
+#### XDR Encoding
 
 Messages on the Stellar core network are encoded in a format called XDR (*External Data Representation*), specified in [RFC 4506](https://tools.ietf.org/html/rfc4506.html). XDR is a binary format designed to be both bandwidth friendly and compatible across various machine architectures.
 
@@ -88,7 +88,7 @@ $ lumen account address bob
 
 ## Ledgers, transactions, and operations
 
-Every few seconds, the Stellar network commits a ledger to its global database. The ledger consists of a set of transactions, each containing one or more operations.
+Every few seconds, the Stellar network commits a ledger to its global database. The ledger consists of a set of transactions, each containing one or more operations. The *transaction envelope* is the header that surrounds a transaction and includes common transaction-level fields.
 
 Every transaction is charged a [fee](https://www.stellar.org/developers/guides/concepts/fees.html), derived from the number of operations in the transaction, and billed to its respective *source account*. The operations could be anything from payments, to offers, to administrative tasks such as managing signers. You can see the full list of Stellar operations [here](https://www.stellar.org/developers/guides/concepts/list-of-operations.html).
 
@@ -313,10 +313,16 @@ $ lumen watch payments mary --cursor start
 Then, on a different terminal, type:
 
 ```sh
+$ lumen watch transactions mary
+```
+
+Now move back to your working terminal and fund Mary's account.
+
+```sh
 $ lumen friendbot mary
 ```
 
-Switch back to the first terminal -- if friendbot succeeded in funding Mary's account, you should see this:
+Switch back to the payment terminal -- if friendbot succeeded in funding Mary's account, you should see this:
 
 ```json
 {
@@ -376,7 +382,9 @@ You should now see a `payment` operation show up on the watching terminal:
 }
 ```
 
-Notice the memo text on the operation? It's actually pulled from the transaction
+Notice the memo text? It's actually not part of the operation, but pulled in here for convenience. The memo fields are part of the encompassing transaction, so although you can lump many operations into a transaction, they can have only a single memo.
+
+If you switch to the transactions terminal, you should see multiple operations with just the details of the transaction envelope.
 
 ### Verbose Logging
 
