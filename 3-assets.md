@@ -3,7 +3,8 @@
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -
 [Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md) -
 [Chapter 4](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md) -
-[Chapter 5](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md)
+[Chapter 5](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md) -
+[Chapter 6](https://github.com/0xfe/hacking-stellar/blob/master/6-debugging.md)
 
 # Chapter 3. Issuing Assets
 
@@ -15,7 +16,7 @@ Entities that issue assets are called **Anchors**, and Anchors can be institutio
 
 ## Creating a new asset
 
-Every asset has an **issuer** and a **code**. The issuer is the Stellar address of the account that initially issues the asset on the network, and the code is a short string representing the asset. For example, The *Bank of Canada* could create and issue Canadian Dollars on the Stellar network, with the code `CAD`.
+Every asset (except the native asset) has an **issuer** and a **code**. The issuer is the Stellar address of the account that initially issues the asset on the network, and the code is a short string representing the asset. For example, The *Bank of Canada* could create and issue Canadian Dollars on the Stellar network, with the code `CAD`.
 
 Let's try that. First create a new account for the Bank of Canada on the test network, and define an alias for our new asset.
 
@@ -24,7 +25,7 @@ $ lumen set config:network test
 $ lumen account new BankOfCanada
 $ lumen friendbot BankOfCanada
 
-# Create an asset called CAD issued by BankOfCanada. Lumen uses the alias as the
+# Create an asset alias called CAD issued by BankOfCanada. Lumen uses the alias as the
 # as the asset code unless you explicitly specify it with the --code flag.
 $ lumen asset set CAD BankOfCanada
 ```
@@ -38,6 +39,9 @@ So, before Bob can hold any `CAD`, he must specify create a trustline to the `CA
 ```sh
 # Create a trustline from Bob to the CAD issued by the Bank of Canada
 $ lumen trust create bob CAD
+
+# You can also refer to the asset without an asset alias.
+$ lumen trust create bob CAD:BankOfCanada
 ```
 
 ## Issuing the asset
@@ -146,6 +150,10 @@ $ lumen asset code CAD
 
 $ lumen asset code CAD-rogue
 # CAD
+
+# The alias `native` is reserved by Lumen and designates the
+# network's native asset.
+$ lumen balance mo native
 ```
 
 Delete an asset alias with `lumen del`.
@@ -170,11 +178,12 @@ $ lumen balance bob CAD:GC6C225I4VIKCLUWJNAFRTTUN5UAMK7JRTCRUN3KSVXULVZ6OEH2WQRH
 
 To learn more about assets, read the section in the [Stellar developer guide](https://www.stellar.org/developers/guides/concepts/assets.html). You can explore assets in the [Stellar lab](https://www.stellar.org/laboratory/#explorer?resource=assets&endpoint=single&network=test).
 
-For now, lets move on to Chapter 4, where we discuss multisignature accounts and transactions.
+For now, lets move on to [Chapter 4](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md), where we discuss multisignature accounts and transactions.
 
 [Front](https://github.com/0xfe/hacking-stellar/blob/master/README.md) -
 [Chapter 1](https://github.com/0xfe/hacking-stellar/blob/master/1-launch.md) -
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -
 [Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md) -
 [Chapter 4](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md) -
-[Chapter 5](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md)
+[Chapter 5](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md) -
+[Chapter 6](https://github.com/0xfe/hacking-stellar/blob/master/6-debugging.md)

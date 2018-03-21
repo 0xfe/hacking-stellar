@@ -3,7 +3,8 @@
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -
 [Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md) -
 [Chapter 4](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md) -
-[Chapter 5](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md)
+[Chapter 5](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md) -
+[Chapter 6](https://github.com/0xfe/hacking-stellar/blob/master/6-debugging.md)
 
 # Chapter 5. The Decentralized Exchange
 
@@ -13,10 +14,11 @@ One of the coolest features of Stellar is the decentralized distributed exchange
 
 To buy and sell assets on the Stellar exchange, use the `lumen dex trade` command. It allows you to make an offer to sell a certain amount of one asset for a price in terms of another asset.
 
-Let's have Bob make an offer to sell 10 XLM for 5 USD each. For the arithmetically challenged, it's an offer to buy 50 USD for 10 XLM.
+Let's have Bob make an offer to sell 10 lumens (XLM) for 5 USD each. For the arithmetically challenged, it's an offer to buy 50 USD for 10 lumens.
 
 ```sh
-$ lumen dex trade bob --buy USD --sell XLM --amount 10 --price 5
+# Recall that `native` is an internal alias for the native asset (lumens/XLM)
+$ lumen dex trade bob --buy USD --sell native --amount 10 --price 5
 ```
 
 Once this offer is made, it remains in Stellar's order book until either someone else takes it, or Bob revokes it.
@@ -25,7 +27,7 @@ To see all of Bob's offers, use `lumen dex list`. You'll notice that every offer
 
 ```sh
 $ lumen dex list bob
-# (141452) selling 10.0000000 XLM for USD at 5.0000000 USD/XLM
+# (141452) selling 10.0000000 lumens for USD at 5.0000000 USD/lumen.
 ```
 
 You can get more detail about Bob's offers with the `--format json` flag.
@@ -45,9 +47,8 @@ $ lumen dex list bob --format json
   "paging_token": "141452",
   "seller": "GDELI4BPSO7SZGNNIDJ33N2HMJDQKB6PDD6P633U6LKGM26BYDVPRXU3",
   "selling": {
-    "asset_type": "credit_alphanum4",
+    "asset_type": "native",
     "asset_code": "XLM",
-    "asset_issuer": "GDELI4BPSO7SZGNNIDJ33N2HMJDQKB6PDD6P633U6LKGM26BYDVPRXU3"
   },
   "buying": {
     "asset_type": "credit_alphanum4",
@@ -66,7 +67,7 @@ $ lumen dex list bob --format json
 Mary can take Bob's offer by making an inverse offer on the DEX. Again, that's an offer to buy 50 units of XLM for 20¢ each.
 
 ```sh
-$ lumen dex trade mary --buy XLM --sell USD --amount 50 --price 0.2
+$ lumen dex trade mary --buy native --sell USD --amount 50 --price 0.2
 ```
 
 ## Managing offers
@@ -74,13 +75,13 @@ $ lumen dex trade mary --buy XLM --sell USD --amount 50 --price 0.2
 If nobody takes Bob's offer, he can choose to reduce the price of the existing offer with the `--update` flag, passing in the offer ID.
 
 ```sh
-$ lumen dex trade bob --buy USD --sell XLM --price 4 --update 141452
+$ lumen dex trade bob --buy USD --sell native --price 4 --update 141452
 ```
 
 Alternatively, Bob can simply revoke his offer with the `--delete` flag.
 
 ```sh
-$ lumen dex trade bob --buy USD --sell XLM --price 4 --delete 141452
+$ lumen dex trade bob --buy USD --sell native --price 4 --delete 141452
 ```
 
 ## Cross-asset Payments
@@ -100,7 +101,7 @@ $ lumen pay 10 CAD --from kelly --to mary --with EUR --max 8
 Lumen uses automatic path finding to facilitate this payment, but you can specify your own asset path if you'd like.
 
 ```sh
-$ lumen pay 10 USD --from kelly --to mary --with EUR --max 8 --through XLM
+$ lumen pay 10 USD --from kelly --to mary --with EUR --max 8 --through native
 ```
 
 ## Trying it out
@@ -208,4 +209,5 @@ As you can see, Stellar's DEX is a fantastic way to facilitate cross-asset payme
 [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md) -
 [Chapter 3](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md) -
 [Chapter 4](https://github.com/0xfe/hacking-stellar/blob/master/4-multisig.md) -
-[Chapter 5](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md)
+[Chapter 5](https://github.com/0xfe/hacking-stellar/blob/master/5-dex.md) -
+[Chapter 6](https://github.com/0xfe/hacking-stellar/blob/master/6-debugging.md)
