@@ -12,6 +12,23 @@ One of the coolest features of Stellar is the decentralized distributed exchange
 
 ## Trading on the exchange
 
+### Order Books
+Order books maintain the list of current offers between asset pairs. For example, the `USD/EUR` orderbook would contain all the bids and asks between USD (the base asset) and EUR (the counter asset.)
+
+To get the orderbook for an asset pair, use the `lumen dex orderbook` command. You can use the `--limit` flag to restrict the number of results, and `--format json` to get JSON formatted results.
+
+```sh
+# List all open orders between HAK and XLM
+$ lumen dex orderbook native HAK
+bid: 100.0000000 HAK for 0.1000000 HAK/xlm
+bid: 230.0000000 HAK for 0.2000000 HAK/xlm
+bid: 350.0000000 HAK for 0.3000000 HAK/xlm
+ask: 20.0000000 HAK for 10.0000000 xlm/HAK
+ask: 2.0000000 HAK for 15.0000000 xlm/HAK
+```
+
+### Buying and Selling
+
 To buy and sell assets on the Stellar exchange, use the `lumen dex trade` command. It allows you to make an offer to sell a certain amount of one asset for a price in terms of another asset.
 
 Let's have Bob make an offer to sell 10 lumens (XLM) for 5 USD each. For the arithmetically challenged, it's an offer to buy 50 USD for 10 lumens.
@@ -70,7 +87,7 @@ Mary can take Bob's offer by making an inverse offer on the DEX. Again, that's a
 $ lumen dex trade mary --buy native --sell USD --amount 50 --price 0.2
 ```
 
-## Managing offers
+### Managing offers
 
 If nobody takes Bob's offer, he can choose to reduce the price of the existing offer with the `--update` flag, passing in the offer ID.
 
@@ -104,7 +121,7 @@ Lumen uses automatic path finding to facilitate this payment, but you can specif
 $ lumen pay 10 USD --from kelly --to mary --with EUR --max 8 --through native
 ```
 
-## Trying it out
+### Trying it out
 
 Let's try an end-to-end example where we create a bunch of assets, offer them on the DEX, and then make a path payment through them.
 
@@ -200,7 +217,7 @@ $ lumen dex list mike
 
 The path payment filled 10 units of both Mary's and Mike's offers. Effectively, Bob sold his `USD` to Mary, who in turn sold her `EUR` to Mike, who ended up paying Kelly the `10 INR`. Furthermore, Stellar ensured that of this happend in one atomic step, i.e., there's no way that this payment flow would only be partially executed, leaving both Bob and Kelly hanging.
 
-# Onward
+## Onward
 
 As you can see, Stellar's DEX is a fantastic way to facilitate cross-asset payments, but also path payments help increase the amount of liquidity in the DEX. In the next chapter, we'll work on building an Anchor.
 
