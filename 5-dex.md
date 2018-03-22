@@ -18,13 +18,60 @@ Order books maintain the list of current offers between asset pairs. For example
 To get the orderbook for an asset pair, use the `lumen dex orderbook` command. You can use the `--limit` flag to restrict the number of results, and `--format json` to get JSON formatted results.
 
 ```sh
+# Let's look at a real orderbook
+$ lumen set config:network public
+
+# Pick an asset from a random anchor in the stellar.org directory
+$ lumen asset set BTC-nao GATEMHCCKCY67ZUCKTROYN24ZYT5GK4EQZ65JJLDHKHRUZI3EUEKMTCH --code BTC
+
 # List all open orders between HAK and XLM
-$ lumen dex orderbook native HAK
-bid: 100.0000000 HAK for 0.1000000 HAK/xlm
-bid: 230.0000000 HAK for 0.2000000 HAK/xlm
-bid: 350.0000000 HAK for 0.3000000 HAK/xlm
-ask: 20.0000000 HAK for 10.0000000 xlm/HAK
-ask: 2.0000000 HAK for 15.0000000 xlm/HAK
+$ lumen dex orderbook BTC-nao native
+ask: 0.2050541 BTC for 36575.7190805 xlm/BTC
+ask: 0.2040236 BTC for 36760.4449344 xlm/BTC
+ask: 0.2029932 BTC for 36947.0461777 xlm/BTC
+ask: 0.2019628 BTC for 37135.5515154 xlm/BTC
+ask: 0.2009324 BTC for 37325.9902411 xlm/BTC
+ask: 0.1999020 BTC for 37518.3922526 xlm/BTC
+ask: 0.1988715 BTC for 37712.7880674 xlm/BTC
+ask: 0.1978411 BTC for 37909.2088386 xlm/BTC
+ask: 0.1968107 BTC for 38107.6863718 xlm/BTC
+ask: 0.1957803 BTC for 38308.2531422 xlm/BTC
+bid: 1974.6074662 xlm for 32258.0645161 xlm/BTC
+bid: 3000.0000000 xlm for 29585.7988166 xlm/BTC
+bid: 3254.1532509 xlm for 29498.5250737 xlm/BTC
+bid: 71.0270171 xlm for 29411.7647059 xlm/BTC
+bid: 100.0000000 xlm for 29325.5131965 xlm/BTC
+bid: 160.0000000 xlm for 29239.7660819 xlm/BTC
+bid: 160.0000000 xlm for 29154.5189504 xlm/BTC
+bid: 160.0000000 xlm for 29069.7674419 xlm/BTC
+bid: 160.0000000 xlm for 28985.5072464 xlm/BTC
+bid: 189.4117647 xlm for 28901.7341040 xlm/BTC
+```
+
+You can also reverse the asset pair, making it simpler to compare prices and calculate spreads. Trading bots do this all the time while looking for arbitrage opportunites on the DEX.
+
+```sh
+$ lumen dex orderbook native BTC-nao
+ask: 1974.6074662 xlm for 0.0000310 BTC/xlm
+ask: 3000.0000000 xlm for 0.0000338 BTC/xlm
+ask: 3254.1532509 xlm for 0.0000339 BTC/xlm
+ask: 71.0270171 xlm for 0.0000340 BTC/xlm
+ask: 100.0000000 xlm for 0.0000341 BTC/xlm
+ask: 160.0000000 xlm for 0.0000342 BTC/xlm
+ask: 160.0000000 xlm for 0.0000343 BTC/xlm
+ask: 160.0000000 xlm for 0.0000344 BTC/xlm
+ask: 160.0000000 xlm for 0.0000345 BTC/xlm
+ask: 189.4117647 xlm for 0.0000346 BTC/xlm
+bid: 0.2050541 BTC for 0.0000273 BTC/xlm
+bid: 0.2040236 BTC for 0.0000272 BTC/xlm
+bid: 0.2029932 BTC for 0.0000271 BTC/xlm
+bid: 0.2019628 BTC for 0.0000269 BTC/xlm
+bid: 0.2009324 BTC for 0.0000268 BTC/xlm
+bid: 0.1999020 BTC for 0.0000267 BTC/xlm
+bid: 0.1988715 BTC for 0.0000265 BTC/xlm
+bid: 0.1978411 BTC for 0.0000264 BTC/xlm
+bid: 0.1968107 BTC for 0.0000262 BTC/xlm
+bid: 0.1957803 BTC for 0.0000261 BTC/xlm
 ```
 
 ### Buying and Selling
