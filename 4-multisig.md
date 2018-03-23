@@ -70,7 +70,7 @@ $ lumen signer add kelly 1 --to pizzafund --memotext "pizza for kelly"
 
 That's it! Now Bob, Kelly, and Mary can spend from the pizza fund and never be hungry again! Since Kelly added herself as a signer, she can throw away the pizza fund's seed.
 
-Bob and Mary don't need the seed either. They'd make a payment using thier own seeds.
+Bob and Mary don't need the seed either. They'd make a payment using their own seeds.
 
 ```sh
 $ lumen pay 10 USD --from pizzafund --to pizzahut --signers bob

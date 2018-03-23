@@ -48,7 +48,7 @@ bid: 160.0000000 xlm for 28985.5072464 xlm/BTC
 bid: 189.4117647 xlm for 28901.7341040 xlm/BTC
 ```
 
-You can also reverse the asset pair, making it simpler to compare prices and calculate spreads. Trading bots do this all the time while looking for arbitrage opportunites on the DEX.
+You can also reverse the asset pair, making it simpler to compare prices and calculate spreads. Trading bots do this all the time while looking for arbitrage opportunities on the DEX.
 
 ```sh
 $ lumen dex orderbook native BTC-nao
@@ -262,7 +262,7 @@ $ lumen dex list mike
 # (143297) selling 40.0000000 INR for EUR at 5.0000000 USD/XLM
 ```
 
-The path payment filled 10 units of both Mary's and Mike's offers. Effectively, Bob sold his `USD` to Mary, who in turn sold her `EUR` to Mike, who ended up paying Kelly the `10 INR`. Furthermore, Stellar ensured that of this happend in one atomic step, i.e., there's no way that this payment flow would only be partially executed, leaving both Bob and Kelly hanging.
+The path payment filled 10 units of both Mary's and Mike's offers. Effectively, Bob sold his `USD` to Mary, who in turn sold her `EUR` to Mike, who ended up paying Kelly the `10 INR`. Furthermore, Stellar ensured that of this happened in one atomic step, i.e., there's no way that this payment flow would only be partially executed, leaving both Bob and Kelly hanging.
 
 ## Onward
 
