@@ -92,7 +92,7 @@ You can read more about Stellar fees in the [developer guide](https://www.stella
 
 ## Distributing assets
 
-Issuing accounts don't hold balances for the assets they issue -- they can techincally issue an infinite supply. So sending an asset back to an issuer is equivalent to destroying the assets.
+Issuing accounts don't hold balances for the assets they issue -- they can technically issue an infinite supply. So sending an asset back to an issuer is equivalent to destroying the assets.
 
 To create a fixed supply, the typical strategy is to create a new *distributor* account, also managed by the anchor, issue it a fixed number of assets, and then permanently disable the issuer's account. The public can always look up the total supply by checking the issuer's ledger, and also confirm that the supply is fixed by verifying that the issuer's account is permanently disabled.
 
@@ -115,7 +115,7 @@ Bank of Canada can no longer create new CAD assets from that issuer. Their only 
 
 ### Setting asset limits
 
-As an asset holder, one can limit the total amount of an asset that they hold during trustline creation. This is typically a preventitive measure against malice or errors.
+As an asset holder, one can limit the total amount of an asset that they hold during trustline creation. This is typically a preventative measure against malice or errors.
 
 ```sh
 # Don't hold more than 5000 CAD

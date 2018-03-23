@@ -75,7 +75,7 @@ $ lumen account new bob
 $ lumen ns project1
 $ lumen set config:network public
 $ lumen account address bob
-# unkown user: bob
+# unknown user: bob
 
 # Switch back to the first namespace
 $ lumen ns custom
