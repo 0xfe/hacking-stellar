@@ -225,6 +225,21 @@ The transaction envelope also contains the total fee to be paid, the address of 
 
 To learn more about transactions read [the topic on the Stellar devlopers site](https://www.stellar.org/developers/guides/concepts/transactions.html).
 
+## Stellar Federation
+
+Stellar Federation allows people to use user-friendly addresses in the form `user*domain.tld`, somewhat similar to e-mail addresses. Individuals or organizations can run a *federation server* that responds to name resolution requests using the [Stellar Federation Protocol](https://www.stellar.org/developers/guides/concepts/federation.html.)
+
+Lumen automatically recognizes federation addresses in its commands, and you can use addresses of the form `user*domain.tld` anywhere an account alias is used.
+
+```sh
+$ lumen account address mo*qubit.sh
+GDEVC4BOVFMB46UHGJ6NKEBCQVY5WI56GOBWPG3QKS4QV4TKDLPE6AH6
+
+$ lumen pay 20 --from mo*qubit.sh --to kelly*happyfish.com
+```
+
+Although the federation protocol is straightforward to implement, the Stellar organization provides [lightweight server](https://github.com/stellar/go/tree/master/services/federation) that you can deploy for your use.
+
 ## Onward
 
 Now that we now how to work with aliases and make XLM payments, lets get to the fun stuff: [issuing assets](https://github.com/0xfe/hacking-stellar/blob/master/3-assets.md).

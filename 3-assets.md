@@ -174,6 +174,14 @@ $ lumen pay 1 USD:BankOfCanada:credit_alphanum4 --from mary --to bob
 $ lumen balance bob CAD:GC6C225I4VIKCLUWJNAFRTTUN5UAMK7JRTCRUN3KSVXULVZ6OEH2WQRH
 ```
 
+You can also use federated addresses (see [Chapter 2](https://github.com/0xfe/hacking-stellar/blob/master/2-payments.md)) when specifying your assets.
+
+```sh
+$ lumen pay 1 CAD:issuer*bankofcanada.com --from mary --to bob
+
+$ lumen asset set CAD anchor*citibank.com
+```
+
 ## Onward
 
 To learn more about assets, read the section in the [Stellar developer guide](https://www.stellar.org/developers/guides/concepts/assets.html). You can explore assets in the [Stellar lab](https://www.stellar.org/laboratory/#explorer?resource=assets&endpoint=single&network=test).
