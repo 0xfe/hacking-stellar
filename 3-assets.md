@@ -125,13 +125,25 @@ $ lumen trust create bob CAD 5000
 $ lumen pay 7000 CAD-BoC --from BankOfCanada --to bob
 ```
 
-As an anchor, you can also choose to pre-approve your asset holders. By marking the issuing account as `AUTH_REQUIRED`, you can require trustlines to be approved by the issuer before being created.
+As an anchor, you can also choose to pre-approve your asset holders. By marking the issuing account as `AUTH_REQUIRED`, you can require trustlines to be authorized by the issuer before they can be established.
 
 ```sh
 $ lumen flags BankOfCanada auth_required
 
-# BankOfCanada must sign this transaction
-$ lumen trust create bob CAD-BoC 1000 --signers bob,BankOfCanada
+# Bob creates a new trustline to CAD.
+$ lumen trust create bob CAD-BoC 1000
+
+# Bank-of-canada authorizes it.
+$ lumen trust allow bob CAD-BoC --signers BankOfCanada
+```
+
+Anchors can also freeze assets on an account or revoke trustlines if they need to. To do this, they must have the `AUTH_REVOCABLE` flag on their issuing account.
+
+```sh
+$ lumen flags BankOfCanada auth_revocable
+
+# Revoke Bob's trustline and freeze his assets
+$ lumen trust allow bob CAD-BoC --revoke --signers BankOfCanada
 ```
 
 ## Managing asset aliases
