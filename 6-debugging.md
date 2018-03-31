@@ -306,14 +306,14 @@ Let's move back to the test network and try it out. Open up a new command-line t
 ```sh
 $ lumen set config:network test
 $ lumen account new mary
-$ lumen watch payments mary --cursor start
+$ lumen watch payments mary --cursor start --format json
 # ... this blocks ...
 ```
 
 Then, on a different terminal, type:
 
 ```sh
-$ lumen watch transactions mary
+$ lumen watch transactions mary --format json
 ```
 
 Now move back to your working terminal and fund Mary's account.
