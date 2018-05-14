@@ -100,6 +100,7 @@ Every transaction can have a short memo associated (upto 28 bytes long.) The mem
 
 ```sh
 $ lumen account set MarysBank GAFUU44WASFPD4YHIU5TKVMGLFMOHAQIOUJTTFQ432W65PFYQVVXFSUW
+$ lumen friendbot MarysBank
 $ lumen pay 5 --from kelly --to MarysBank --memoid 485532245
 ```
 
