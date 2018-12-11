@@ -122,7 +122,7 @@ As an asset holder, one can limit the total amount of an asset that they hold du
 $ lumen trust create bob CAD 5000
 
 # This will fail
-$ lumen pay 7000 CAD-BoC --from BankOfCanada --to bob
+$ lumen pay 7000 CAD --from BankOfCanada --to bob
 ```
 
 As an anchor, you can also choose to pre-approve your asset holders. By marking the issuing account as `AUTH_REQUIRED`, you can require trustlines to be authorized by the issuer before they can be established.
@@ -131,10 +131,10 @@ As an anchor, you can also choose to pre-approve your asset holders. By marking 
 $ lumen flags BankOfCanada auth_required
 
 # Bob creates a new trustline to CAD.
-$ lumen trust create bob CAD-BoC 1000
+$ lumen trust create bob CAD 1000
 
 # Bank-of-canada authorizes it.
-$ lumen trust allow bob CAD-BoC --signers BankOfCanada
+$ lumen trust allow bob CAD --signers BankOfCanada
 ```
 
 Anchors can also freeze assets on an account or revoke trustlines if they need to. To do this, they must have the `AUTH_REVOCABLE` flag on their issuing account.
@@ -143,7 +143,7 @@ Anchors can also freeze assets on an account or revoke trustlines if they need t
 $ lumen flags BankOfCanada auth_revocable
 
 # Revoke Bob's trustline and freeze his assets
-$ lumen trust allow bob CAD-BoC --revoke --signers BankOfCanada
+$ lumen trust allow bob CAD --revoke --signers BankOfCanada
 ```
 
 ## Managing asset aliases
@@ -153,7 +153,7 @@ In the above examples, we defined aliases for the new assets that we created. Re
 To look up assets by their alias, you can use the `lumen asset` command.
 
 ```sh
-# Who issues CAD-BoC?
+# Who issues CAD?
 $ lumen asset issuer CAD
 # GC6C225I4VIKCLUWJNAFRTTUN5UAMK7JRTCRUN3KSVXULVZ6OEH2WQRH
 
@@ -171,7 +171,7 @@ $ lumen balance mo native
 Delete an asset alias with `lumen del`.
 
 ```sh
-$ lumen asset del CAD-BoC
+$ lumen asset del CAD
 ```
 
 If you don't want to create an asset, you can use colon-syntax to reference one without making an alias. The format `CODE:ISSUER` or `CODE:ISSUER:TYPE` can be used in place of any of the other commands in this chapter.
