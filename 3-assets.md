@@ -108,7 +108,7 @@ $ lumen trust create distributor CAD
 $ lumen pay 10000000000 CAD --from BankOfCanada --to distributor
 
 # Now kill BoC's issuer's account
-$ lumen signers masterweight BankOfCanada 0
+$ lumen signer masterweight BankOfCanada 0
 ```
 
 Bank of Canada can no longer create new CAD assets from that issuer. Their only option now is to create a new issuer account, and get customers to create a new trustline to the new asset for that account.
