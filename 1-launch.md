@@ -43,6 +43,7 @@ After downloading Lumen, move it to your search path, and configure it to use th
 
 ```sh
 sudo mv lumen.macos /usr/local/bin/lumen
+sudo chmod +x /usr/local/bin/lumen
 lumen set config:network test
 ```
 
